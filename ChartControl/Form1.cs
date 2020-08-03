@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraCharts;
+﻿using DevExpress.Utils;
+using DevExpress.XtraCharts;
 using System;
 using System.Windows.Forms;
 
@@ -14,7 +15,25 @@ namespace ChartControl
         public Form1()
         {
             InitializeComponent();
-            _points = chartControl1.Series[0].Points;
+            var series = chartControl1.Series[0];
+            _points = series.Points;
+
+            #region 常用属性，可按需求设置
+            series.ArgumentScaleType = ScaleType.Qualitative;     //使用自定义时间
+            //chartControl1.ToolTipEnabled = DefaultBoolean.True; //显示曲线端点值
+            //chartControl1.ToolTipOptions.ShowForSeries = true;  //显示曲线名称
+            //chartControl1.CrosshairEnabled = DefaultBoolean.False;//隐藏十字线
+
+            //XYDiagram diagram = (XYDiagram)chartControl1.Diagram;
+            ////设定曲线图缩放
+            //diagram.EnableAxisXScrolling = true;
+            //diagram.EnableAxisXZooming = true;
+            //diagram.EnableAxisYScrolling = true;
+            //diagram.EnableAxisYZooming = true;
+            ////设定曲线图视野，注意要先设置WholeRange
+            //diagram.AxisY.WholeRange.SetMinMaxValues(-10, 30);
+            //diagram.AxisY.VisualRange.SetMinMaxValues(-10, 30);
+            #endregion
         }
 
         private void timer1_Tick(object sender, EventArgs e)
